@@ -12,9 +12,7 @@ import cors from "cors";
 import fs from 'fs';
 
 mongoose
-  .connect(
-    "mongodb+srv://Diana:Diana123@cluster0.gtihdk7.mongodb.net/blog?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("DB ok connect");
   })
@@ -105,7 +103,7 @@ app.get(
   postController.getComments
 );
 
-app.listen(9832, (err) => {
+app.listen( process.env.PORT || 9832, (err) => {
   if (err) {
     return console.log(err);
   }
